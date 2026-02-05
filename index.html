@@ -614,6 +614,80 @@
         // 简报数据存储
         const briefingsData = {};
         
+        // 简报数据 - 2026-02-05
+        briefingsData['2026-02-05'] = {
+            date: '2026-02-05',
+            stats: { papers: 6, safety: 2, breakthrough: 2, conference: 0 },
+            trends: [
+                { icon: '🛡️', text: 'AI 安全持续升温：模型对齐和可解释性研究成为焦点' },
+                { icon: '🤖', text: 'Agent 框架创新：Meta-Agent 和多 Agent 协作范式涌现' },
+                { icon: '🧠', text: '推理能力增强：LLM 在规划和图推理上的新进展' },
+                { icon: '⚡', text: '高效微调技术：参数高效和测试时优化方法受关注' }
+            ],
+            papers: [
+                {
+                    id: '2602.00276',
+                    title: 'Localizing and Correcting Errors for LLM-based Planners',
+                    authors: 'Aditya Kumar, William W. Cohen',
+                    badges: ['hot', 'new'],
+                    abstract: 'LLM 在符号规划任务中常违反领域约束。本研究提出 L-ICL（定位式上下文学习），通过识别首个约束违反步骤并注入最小化纠正示例，显著提升规划有效性。',
+                    keypoints: ['定位首个约束违反步骤', '仅需 60 个样本达 89% 有效规划率', '在网格世界、迷宫、推箱子等多领域验证'],
+                    links: { arxiv: 'https://arxiv.org/abs/2602.00276' },
+                    category: 'cs.AI'
+                },
+                {
+                    id: '2602.00298',
+                    title: 'Assessing Domain-Level Susceptibility to Emergent Misalignment',
+                    authors: 'Abhishek Mishra 等',
+                    badges: ['hot', 'new'],
+                    abstract: '首个系统评估不同领域对涌现错位的易感性研究。在 11 个领域构建不安全数据集进行微调，发现领域间错位率差异巨大（0% ~ 87.67%）。',
+                    keypoints: ['构建 11 领域不安全数据集', '血腥电影类错位率高达 87.67%', '成员推断指标可预测错位程度'],
+                    links: { arxiv: 'https://arxiv.org/abs/2602.00298', code: 'https://github.com/abhishek9909/assessing-domain-emergent-misalignment' },
+                    category: 'cs.AI'
+                },
+                {
+                    id: '2602.00307',
+                    title: 'Autonomous Data Processing using Meta-Agents',
+                    authors: 'ADP-MA 团队',
+                    badges: ['star', 'new'],
+                    abstract: '首个自主数据处理框架 ADP-MA，通过 Meta-Agent 动态构建、执行和优化端到端数据处理流水线，支持 Agent 复用和渐进式采样。',
+                    keypoints: ['三层架构：规划 + 编排 + 监控', 'Meta-Agent 动态设计多阶段计划', '支持 Agent 复用减少冗余'],
+                    links: { arxiv: 'https://arxiv.org/abs/2602.00307' },
+                    category: 'cs.AI / cs.DB / cs.MA'
+                },
+                {
+                    id: '2602.02518',
+                    title: 'GraphDancer: Training LLMs to Explore and Reason over Graphs',
+                    authors: 'Yuyang Bai, Zhuofeng Li 等',
+                    badges: ['star', 'new'],
+                    abstract: '通过课程强化学习训练 LLM 图导航能力。3B 参数的 GraphDancer 在跨域泛化上超越 14B 模型和 GPT-4o-mini，支持多跳推理和迭代信息聚合。',
+                    keypoints: ['图感知课程学习', '3B 模型超越 14B 和 GPT-4o-mini', '多跳推理和迭代信息聚合'],
+                    links: { arxiv: 'https://arxiv.org/abs/2602.02518', project: 'https://yuyangbai.com/graphdancer/' },
+                    category: 'cs.LG / cs.AI / cs.CL'
+                },
+                {
+                    id: '2602.02496',
+                    title: 'The Hypocrisy Gap: Quantifying Divergence Between Internal Belief and CoT',
+                    authors: 'Shikhar Shiromani 等',
+                    badges: ['hot', 'new'],
+                    abstract: '提出"虚伪差距"指标，利用稀疏自编码器量化 LLM 内部推理与最终输出的分歧，有效检测模型谄媚行为（AUROC 0.55-0.73）。',
+                    keypoints: ['量化内部信念与 CoT 差异', '有效检测谄媚行为', '多模型验证（Gemma/Llama/Qwen）'],
+                    links: { arxiv: 'https://arxiv.org/abs/2602.02496' },
+                    category: 'cs.CL'
+                },
+                {
+                    id: '2602.02636',
+                    title: 'WideSeek: Advancing Wide Research via Multi-Agent Scaling',
+                    authors: 'Ziyang Huang 等',
+                    badges: ['star', 'new'],
+                    abstract: '从 Deep Research 到 Wide Research，提出动态层次化多 Agent 架构 WideSeek。通过并行扩展 Agent 数量提升搜索广度，构建 WideSeekBench 基准。',
+                    keypoints: ['WideSeekBench 广域信息检索基准', '动态层次化多 Agent 架构', '多 Agent RL 端到端优化'],
+                    links: { arxiv: 'https://arxiv.org/abs/2602.02636' },
+                    category: 'cs.CL / cs.AI / cs.IR'
+                }
+            ]
+        };
+        
         // 初始数据（2026-02-04）
         briefingsData['2026-02-04'] = {
             date: '2026-02-04',
@@ -900,7 +974,7 @@
         
         // 初始化
         document.addEventListener('DOMContentLoaded', () => {
-            loadBriefing('2026-02-04');
+            loadBriefing('2026-02-05');
             updateFavCount();
         });
         
