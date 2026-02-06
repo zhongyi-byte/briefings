@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 研究简报 - 2026年2月6日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        .header {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #1a1a2e;
+            font-size: 2em;
+        }
+        .date {
+            color: #667eea;
+            font-size: 1.1em;
+            margin-top: 8px;
+        }
+        h2 {
+            color: #1a1a2e;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        h3 {
+            color: #667eea;
+            margin: 20px 0 10px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .trend-list {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .trend-list li {
+            margin: 8px 0;
+            list-style: none;
+        }
+        .paper-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .paper-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        .paper-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .paper-meta a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .paper-meta a:hover {
+            text-decoration: underline;
+        }
+        .paper-summary {
+            color: #444;
+            font-style: italic;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+        }
+        .paper-finding {
+            margin-top: 12px;
+        }
+        .paper-finding li {
+            margin: 6px 0;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="./index.html">← 返回索引</a>
+        </div>
+        
+        <div class="header">
+            <h1>📊 AI 研究简报</h1>
+            <div class="date">2026年2月6日 · 每日精选 arXiv AI 论文</div>
+        </div>
+
+        <h2>📈 今日概览</h2>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="number">491</div>
+                <div>AI 论文总数</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">8</div>
+                <div>精选论文</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">5</div>
+                <div>研究方向</div>
+            </div>
+        </div>
+
+        <h3>🔥 热点趋势</h3>
+        <ul class="trend-list">
+            <li>🔥 <strong>Agent 自进化</strong>：群体智能代理的开放式自我改进成为焦点</li>
+            <li>🧠 <strong>推理机制</strong>：对推理模型内部机制的深入研究增多</li>
+            <li>⚠️ <strong>AI Safety</strong>：假新闻生成与推理安全引发关注</li>
+            <li>🤝 <strong>多智能体协作</strong>：宽度扩展 vs 深度扩展的新范式</li>
+        </ul>
+
+        <h2>🌟 重点论文</h2>
+
+        <div class="paper-card">
+            <div class="paper-title">1. 流体表征推理机制研究</div>
+            <div class="paper-meta">
+                <strong>Fluid Representations in Reasoning Models</strong><br>
+                作者: Dmitrii Kharlapenko 等<br>
+                arXiv: <a href="https://arxiv.org/abs/2602.04843" target="_blank">2602.04843</a>
+            </div>
+            <div class="paper-summary">
+                💡 揭示推理模型通过"流体推理表征"在上下文中逐步完善抽象概念表征的内在机制。
+            </div>
+            <ul class="paper-finding">
+                <li>推理模型在生成推理链时会逐步改进对动作和概念的内部表征</li>
+                <li>模型会发展出专注于结构而非具体动作名称的抽象编码</li>
+                <li>通过干预实验证实：注入优化后的表征可提升准确率</li>
+            </ul>
+        </div>
+
+        <div class="paper-card">
+            <div class="paper-title">2. 群体进化代理：开放式自我改进新范式</div>
+            <div class="paper-meta">
+                <strong>Group-Evolving Agents: Open-Ended Self-Improvement via Experience Sharing</strong><br>
+                作者: Zhaotian Weng 等<br>
+                arXiv: <a href="https://arxiv.org/abs/2602.04837" target="_blank">2602.04837</a>
+            </div>
+            <div class="paper-summary">
+                💡 提出 GEA 范式，将智能体群体作为进化单元，实现显式经验共享和复用，在代码任务上大幅超越现有自进化方法。
+            </div>
+            <ul class="paper-finding">
+                <li>在 SWE-bench Verified 上达到 <strong>71.0%</strong>（对比现有方法 56.7%）</li>
+                <li>在 Polyglot 上达到 <strong>88.3%</strong>（对比现有方法 68.3%）</li>
+                <li>修复框架级 bug 平均仅需 1.4 次迭代（对比 5 次）</li>
+            </ul>
+        </div>
+
+        <div class="paper-card">
+            <div class="paper-title">3. 强化注意力学习：多模态后训练新框架</div>
+            <div class="paper-meta">
+                <strong>Reinforced Attention Learning</strong><br>
+                作者: Bangzheng Li 等<br>
+                arXiv: <a href="https://arxiv.org/abs/2602.04884" target="_blank">2602.04884</a>
+            </div>
+            <div class="paper-summary">
+                💡 提出 RAL 框架，直接优化内部注意力分布而非输出序列，为多模态 LLM 的后训练提供新范式。
+            </div>
+            <ul class="paper-finding">
+                <li>在图像和视频基准上相比 GRPO 等方法获得一致提升</li>
+                <li>引入"On-Policy Attention Distillation"</li>
+                <li>将优化重心从"生成什么"转移到"关注哪里"</li>
+            </ul>
+        </div>
+
+        <div class="paper-card">
+            <div class="paper-title">4. 思维链并非真理链：推理 LLM 假新闻生成风险分析</div>
+            <div class="paper-meta">
+                <strong>CoT is Not the Chain of Truth: An Empirical Internal Analysis of Reasoning LLMs for Fake News Generation</strong><br>
+                作者: Chunlin Gong 等<br>
+                arXiv: <a href="https://arxiv.org/abs/2602.04856" target="_blank">2602.04856</a>
+            </div>
+            <div class="paper-summary">
+                💡 揭示即使模型拒绝有害请求，其思维链(CoT)仍可能内部包含并传播不安全叙事，挑战"拒绝即安全"的假设。
+            </div>
+            <ul class="paper-finding">
+                <li>提出统一的安全分析框架，解构 CoT 生成过程</li>
+                <li>发现当思考模式激活时，生成风险显著上升</li>
+                <li>关键路由决策仅集中在少数连续的中层</li>
+            </ul>
+        </div>
+
+        <div class="paper-card">
+            <div class="paper-title">5. WideSeek-R1: 宽度扩展的多智能体信息检索</div>
+            <div class="paper-meta">
+                <strong>WideSeek-R1: Exploring Width Scaling for Broad Information Seeking via Multi-Agent Reinforcement Learning</strong><br>
+                作者: Zelai Xu 等<br>
+                arXiv: <a href="https://arxiv.org/abs/2602.04634" target="_blank">2602.04634</a>
+            </div>
+            <div class="paper-summary">
+                💡 提出 WideSeek-R1，通过多智能体强化学习实现宽度扩展，4B 模型在 WideSearch 基准上媲美 DeepSeek-R1-671B。
+            </div>
+            <ul class="paper-finding">
+                <li>WideSeek-R1-4B 达到 <strong>40.0%</strong> 的 F1 分数</li>
+                <li>性能与单智能体 DeepSeek-R1-671B 相当</li>
+                <li>验证了宽度扩展在广泛信息检索任务中的有效性</li>
+            </ul>
+        </div>
+
+        <div class="paper-card">
+            <div class="paper-title">6. Vibe AIGC: 代理编排内容生成新范式</div>
+            <div class="paper-meta">
+                <strong>Vibe AIGC: A New Paradigm for Content Generation via Agentic Orchestration</strong><br>
+                作者: Shihao Li 等<br>
+                arXiv: <a href="https://arxiv.org/abs/2602.04575" target="_blank">2602.04575</a>
+            </div>
+            <div class="paper-summary">
+                💡 提出 Vibe AIGC 范式，用户作为指挥官提供高层次的"氛围"(Vibe)，由 Meta-Planner 编排多智能体工作流实现内容生成。
+            </div>
+            <ul class="paper-finding">
+                <li>弥合创作者高层次意图与单模型随机性之间的"意图-执行鸿沟"</li>
+                <li>将 AI 从脆弱的推理引擎转变为稳健的系统级工程伙伴</li>
+            </ul>
+        </div>
+
+        <div class="paper-card">
+            <div class="paper-title">7. 分解提示无法填补知识缺口，但帮助模型说"我不知道"</div>
+            <div class="paper-meta">
+                <strong>Decomposed Prompting Does Not Fix Knowledge Gaps, But Helps Models Say "I Don't Know"</strong><br>
+                作者: Dhruv Madhwal 等<br>
+                arXiv: <a href="https://arxiv.org/abs/2602.04853" target="_blank">2602.04853</a>
+            </div>
+            <div class="paper-summary">
+                💡 发现分解提示虽对前沿模型的准确率提升有限，但不同提示方案之间的不一致性可有效预测错误，实现无需检索或微调的免训练弃权策略。
+            </div>
+            <ul class="paper-finding">
+                <li>基于不一致性的弃权策略优于标准不确定性基线</li>
+                <li>可提升 F1 和 AUROC，无需额外训练或检索</li>
+            </ul>
+        </div>
+
+        <div class="paper-card">
+            <div class="paper-title">8. 蛋白质多尺度结构生成自回归建模</div>
+            <div class="paper-meta">
+                <strong>Protein Autoregressive Modeling via Multiscale Structure Generation</strong><br>
+                作者: ChengYen Hsieh 等 (ByteDance Seed)<br>
+                arXiv: <a href="https://arxiv.org/abs/2602.04883" target="_blank">2602.04883</a>
+            </div>
+            <div class="paper-summary">
+                💡 提出 PAR，首个多尺度自回归蛋白质骨架生成框架，通过粗到细的下一尺度预测，实现灵活的条件生成和 motif 支架。
+            </div>
+            <ul class="paper-finding">
+                <li>采用噪声上下文学习有效缓解自回归模型的曝光偏差</li>
+                <li>展示强大的零样本泛化能力</li>
+                <li>支持无需微调的人类提示条件生成</li>
+            </ul>
+        </div>
+
+        <h2>📝 分类统计</h2>
+        <table>
+            <tr>
+                <th>方向</th>
+                <th>论文数</th>
+                <th>代表论文</th>
+            </tr>
+            <tr>
+                <td>AI Agent / 多智能体</td>
+                <td>3</td>
+                <td>GEA, WideSeek-R1, Vibe AIGC</td>
+            </tr>
+            <tr>
+                <td>LLM 推理机制</td>
+                <td>2</td>
+                <td>流体表征, CoT 安全分析</td>
+            </tr>
+            <tr>
+                <td>多模态学习</td>
+                <td>1</td>
+                <td>RAL</td>
+            </tr>
+            <tr>
+                <td>AI Safety</td>
+                <td>2</td>
+                <td>CoT 假新闻风险, 分解提示</td>
+            </tr>
+            <tr>
+                <td>科学应用</td>
+                <td>1</td>
+                <td>蛋白质建模</td>
+            </tr>
+        </table>
+
+        <h2>🔗 链接汇总</h2>
+        <ul>
+            <li>📄 今日完整简报: <a href="./2026-02-06.md">2026-02-06.md</a></li>
+            <li>📚 arXiv AI: <a href="https://arxiv.org/list/cs.AI/recent" target="_blank">cs.AI</a></li>
+            <li>📚 arXiv ML: <a href="https://arxiv.org/list/cs.LG/recent" target="_blank">cs.LG</a></li>
+            <li>📚 arXiv CL: <a href="https://arxiv.org/list/cs.CL/recent" target="_blank">cs.CL</a></li>
+        </ul>
+
+        <div class="footer">
+            <p>简报由 OpenClaw AI 自动生成 · 每日更新</p>
+            <p>数据来源: arXiv.org</p>
+        </div>
+    </div>
+</body>
+</html>

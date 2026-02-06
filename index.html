@@ -3,984 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 研究简报 - 归档</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>AI 研究简报</title>
     <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #ec4899;
-            --accent: #06b6d4;
-            --bg: #0f172a;
-            --bg-light: #1e293b;
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border: #334155;
-            --card-bg: rgba(30, 41, 59, 0.8);
-            --hot: #ef4444;
-            --star: #f59e0b;
-            --success: #22c55e;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
         body {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
-            min-height: 100vh;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
         }
-        
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
-        }
-        
-        /* 头部 */
-        header {
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-            position: relative;
-        }
-        
-        .header-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 24px;
-        }
-        
-        /* 控制栏 */
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        
-        .date-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--card-bg);
-            padding: 12px 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-        
-        .date-selector label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-        
-        .date-selector input[type="date"] {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            cursor: pointer;
-        }
-        
-        .date-selector input[type="date"]:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        
-        .nav-btn {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-        
-        .nav-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-        
-        /* 标签页 */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 20px;
-        }
-        
-        .tab {
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .tab.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
-        }
-        
-        .tab:hover:not(.active) {
-            border-color: var(--primary);
-            color: var(--text);
-        }
-        
-        .tab .count {
-            background: rgba(255,255,255,0.2);
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-        }
-        
-        /* 主内容区 */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 30px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 40px;
         }
-        
-        /* 简报内容 */
-        .briefing-content {
-            display: none;
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 2.2em;
         }
-        
-        .briefing-content.active {
-            display: block;
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
         }
-        
-        /* 收藏内容 */
-        .favorites-content {
-            display: none;
-        }
-        
-        .favorites-content.active {
-            display: block;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-muted);
-        }
-        
-        .empty-state-icon {
-            font-size: 4rem;
-            margin-bottom: 16px;
-        }
-        
-        /* 统计卡片 */
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 16px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
         }
-        
         .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-        
-        /* 趋势 */
-        .trends {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-        
-        .trend-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .trend-icon {
-            font-size: 1.5rem;
-        }
-        
-        .trend-text {
-            font-size: 0.9rem;
-            color: var(--text);
-        }
-        
-        /* 论文卡片 */
-        .paper {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            position: relative;
-            transition: transform 0.2s;
-        }
-        
-        .paper:hover {
-            transform: translateY(-2px);
-            border-color: var(--primary);
-        }
-        
-        .paper-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
-        
-        .paper-badges {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        
-        .badge {
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        
-        .badge-hot {
-            background: rgba(239, 68, 68, 0.2);
-            color: #fca5a5;
-        }
-        
-        .badge-star {
-            background: rgba(245, 158, 11, 0.2);
-            color: #fcd34d;
-        }
-        
-        .badge-new {
-            background: rgba(99, 102, 241, 0.2);
-            color: #a5b4fc;
-        }
-        
-        /* 收藏按钮 */
-        .favorite-btn {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.2s;
-        }
-        
-        .favorite-btn:hover {
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
-        
-        .favorite-btn.active {
-            background: rgba(236, 72, 153, 0.2);
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
-        
-        .paper h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-        
-        .paper-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-        
-        .paper-abstract {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 16px;
-            line-height: 1.7;
-        }
-        
-        .paper-keypoints {
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 8px;
-            padding: 14px 18px;
-            margin-bottom: 16px;
-        }
-        
-        .paper-keypoints h4 {
-            font-size: 0.8rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-        
-        .paper-keypoints ul {
-            list-style: none;
-            font-size: 0.9rem;
-        }
-        
-        .paper-keypoints li {
-            padding: 4px 0;
-            padding-left: 16px;
-            position: relative;
-            color: var(--text);
-        }
-        
-        .paper-keypoints li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-        
-        .paper-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .paper-link {
-            padding: 8px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        
-        .link-primary {
-            background: var(--primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-        }
-        
-        .link-primary:hover {
-            background: var(--primary-dark);
-        }
-        
-        .link-secondary {
-            background: transparent;
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-        }
-        
-        .link-secondary:hover {
-            border-color: var(--primary);
-            color: var(--text);
-        }
-        
-        /* 收藏项 */
-        .favorite-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .favorite-item:hover {
-            border-color: var(--primary);
-        }
-        
-        .favorite-info h4 {
-            font-size: 1rem;
-            margin-bottom: 4px;
-            color: var(--text);
-        }
-        
-        .favorite-info span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        
-        .favorite-remove {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 8px;
-            font-size: 1.2rem;
-            transition: color 0.2s;
-        }
-        
-        .favorite-remove:hover {
-            color: var(--hot);
-        }
-        
-        /* 通知 */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 14px 24px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            opacity: 0;
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-        
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-        
-        .toast-icon {
-            font-size: 1.2rem;
-        }
-        
-        /* 加载 */
-        .loading {
+            padding: 20px;
+            border-radius: 8px;
             text-align: center;
-            padding: 60px;
-            color: var(--text-muted);
         }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--border);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 16px;
+        .stat-card h3 {
+            font-size: 2em;
+            margin-bottom: 5px;
         }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .stat-card p {
+            opacity: 0.9;
+            font-size: 0.9em;
         }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.85rem;
+        .briefing-list {
+            margin-top: 30px;
         }
-        
-        footer a {
-            color: var(--primary);
+        .briefing-item {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .briefing-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .briefing-item h3 {
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        .briefing-item .date {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        .briefing-item .highlight {
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.95em;
+        }
+        .briefing-item a {
+            color: #667eea;
             text-decoration: none;
         }
-        
-        /* 响应式 */
-        @media (max-width: 640px) {
-            h1 { font-size: 1.8rem; }
-            .controls { flex-direction: column; }
-            .paper { padding: 18px; }
-            .tabs { flex-wrap: wrap; }
+        .briefing-item a:hover {
+            text-decoration: underline;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .tag {
+            background: #e3e8ff;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            text-align: center;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <div class="bg-gradient"></div>
-    
-    <header>
-        <div class="header-content">
-            <h1>📊 AI 研究简报</h1>
-            <p class="subtitle">追踪 arXiv 每日 AI 论文精华</p>
-            
-            <div class="controls">
-                <div class="date-selector">
-                    <button class="nav-btn" onclick="changeDate(-1)" title="前一天">‹</button>
-                    <label for="datePicker">📅</label>
-                    <input type="date" id="datePicker" onchange="loadBriefing(this.value)">
-                    <button class="nav-btn" onclick="changeDate(1)" title="后一天">›</button>
-                </div>
-            </div>
-            
-            <div class="tabs">
-                <div class="tab active" onclick="switchTab('briefing')" id="tab-briefing">
-                    📋 简报 <span class="count" id="paperCount">0</span>
-                </div>
-                <div class="tab" onclick="switchTab('favorites')" id="tab-favorites">
-                    ⭐ 收藏 <span class="count" id="favCount">0</span>
-                </div>
-            </div>
-        </div>
-    </header>
-    
     <div class="container">
-        <!-- 简报内容 -->
-        <div class="briefing-content active" id="briefingPanel">
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>加载中...</p>
+        <h1>📊 AI 研究简报</h1>
+        <p class="subtitle">每日 arXiv AI 论文精选 · 关注 LLM / Agent / 多模态 / AI Safety</p>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>1</h3>
+                <p>已发布简报</p>
             </div>
-            <div id="briefingData"></div>
+            <div class="stat-card">
+                <h3>8</h3>
+                <p>今日精选论文</p>
+            </div>
+            <div class="stat-card">
+                <h3>491</h3>
+                <p>今日 AI 论文总数</p>
+            </div>
         </div>
-        
-        <!-- 收藏内容 -->
-        <div class="favorites-content" id="favoritesPanel">
-            <div id="favoritesList"></div>
+
+        <div class="briefing-list">
+            <h2>📅 历史简报</h2>
+            
+            <div class="briefing-item">
+                <span class="date">2026-02-06</span>
+                <h3><a href="./2026-02-06.html">今日 AI 研究简报</a></h3>
+                <p class="highlight">
+                    群体进化代理 (GEA) 提出开放式自我改进新范式；揭示推理模型的"流体表征"机制；
+                    发现 CoT 并非"真理链"，存在假新闻生成风险；WideSeek-R1 验证宽度扩展的有效性
+                </p>
+                <div class="tags">
+                    <span class="tag">AI Agent</span>
+                    <span class="tag">LLM 推理</span>
+                    <span class="tag">多模态</span>
+                    <span class="tag">AI Safety</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>由 OpenClaw AI 自动生成 · 每日更新</p>
+            <p>数据来源: arXiv.org</p>
         </div>
     </div>
-    
-    <!-- 通知 -->
-    <div class="toast" id="toast">
-        <span class="toast-icon"></span>
-        <span class="toast-message"></span>
-    </div>
-    
-    <footer>
-        <p>🤖 每日 9:00 AM 自动更新 | Generated by Zyi</p>
-        <p style="margin-top: 8px;">
-            <a href="https://github.com/zhongyi-byte">GitHub</a> | 
-            <span id="currentDateDisplay"></span>
-        </p>
-    </footer>
-    
-    <script>
-        // 简报数据存储
-        const briefingsData = {};
-        
-        // 简报数据 - 2026-02-05
-        briefingsData['2026-02-05'] = {
-            date: '2026-02-05',
-            stats: { papers: 6, safety: 2, breakthrough: 2, conference: 0 },
-            trends: [
-                { icon: '🛡️', text: 'AI 安全持续升温：模型对齐和可解释性研究成为焦点' },
-                { icon: '🤖', text: 'Agent 框架创新：Meta-Agent 和多 Agent 协作范式涌现' },
-                { icon: '🧠', text: '推理能力增强：LLM 在规划和图推理上的新进展' },
-                { icon: '⚡', text: '高效微调技术：参数高效和测试时优化方法受关注' }
-            ],
-            papers: [
-                {
-                    id: '2602.00276',
-                    title: 'Localizing and Correcting Errors for LLM-based Planners',
-                    authors: 'Aditya Kumar, William W. Cohen',
-                    badges: ['hot', 'new'],
-                    abstract: 'LLM 在符号规划任务中常违反领域约束。本研究提出 L-ICL（定位式上下文学习），通过识别首个约束违反步骤并注入最小化纠正示例，显著提升规划有效性。',
-                    keypoints: ['定位首个约束违反步骤', '仅需 60 个样本达 89% 有效规划率', '在网格世界、迷宫、推箱子等多领域验证'],
-                    links: { arxiv: 'https://arxiv.org/abs/2602.00276' },
-                    category: 'cs.AI'
-                },
-                {
-                    id: '2602.00298',
-                    title: 'Assessing Domain-Level Susceptibility to Emergent Misalignment',
-                    authors: 'Abhishek Mishra 等',
-                    badges: ['hot', 'new'],
-                    abstract: '首个系统评估不同领域对涌现错位的易感性研究。在 11 个领域构建不安全数据集进行微调，发现领域间错位率差异巨大（0% ~ 87.67%）。',
-                    keypoints: ['构建 11 领域不安全数据集', '血腥电影类错位率高达 87.67%', '成员推断指标可预测错位程度'],
-                    links: { arxiv: 'https://arxiv.org/abs/2602.00298', code: 'https://github.com/abhishek9909/assessing-domain-emergent-misalignment' },
-                    category: 'cs.AI'
-                },
-                {
-                    id: '2602.00307',
-                    title: 'Autonomous Data Processing using Meta-Agents',
-                    authors: 'ADP-MA 团队',
-                    badges: ['star', 'new'],
-                    abstract: '首个自主数据处理框架 ADP-MA，通过 Meta-Agent 动态构建、执行和优化端到端数据处理流水线，支持 Agent 复用和渐进式采样。',
-                    keypoints: ['三层架构：规划 + 编排 + 监控', 'Meta-Agent 动态设计多阶段计划', '支持 Agent 复用减少冗余'],
-                    links: { arxiv: 'https://arxiv.org/abs/2602.00307' },
-                    category: 'cs.AI / cs.DB / cs.MA'
-                },
-                {
-                    id: '2602.02518',
-                    title: 'GraphDancer: Training LLMs to Explore and Reason over Graphs',
-                    authors: 'Yuyang Bai, Zhuofeng Li 等',
-                    badges: ['star', 'new'],
-                    abstract: '通过课程强化学习训练 LLM 图导航能力。3B 参数的 GraphDancer 在跨域泛化上超越 14B 模型和 GPT-4o-mini，支持多跳推理和迭代信息聚合。',
-                    keypoints: ['图感知课程学习', '3B 模型超越 14B 和 GPT-4o-mini', '多跳推理和迭代信息聚合'],
-                    links: { arxiv: 'https://arxiv.org/abs/2602.02518', project: 'https://yuyangbai.com/graphdancer/' },
-                    category: 'cs.LG / cs.AI / cs.CL'
-                },
-                {
-                    id: '2602.02496',
-                    title: 'The Hypocrisy Gap: Quantifying Divergence Between Internal Belief and CoT',
-                    authors: 'Shikhar Shiromani 等',
-                    badges: ['hot', 'new'],
-                    abstract: '提出"虚伪差距"指标，利用稀疏自编码器量化 LLM 内部推理与最终输出的分歧，有效检测模型谄媚行为（AUROC 0.55-0.73）。',
-                    keypoints: ['量化内部信念与 CoT 差异', '有效检测谄媚行为', '多模型验证（Gemma/Llama/Qwen）'],
-                    links: { arxiv: 'https://arxiv.org/abs/2602.02496' },
-                    category: 'cs.CL'
-                },
-                {
-                    id: '2602.02636',
-                    title: 'WideSeek: Advancing Wide Research via Multi-Agent Scaling',
-                    authors: 'Ziyang Huang 等',
-                    badges: ['star', 'new'],
-                    abstract: '从 Deep Research 到 Wide Research，提出动态层次化多 Agent 架构 WideSeek。通过并行扩展 Agent 数量提升搜索广度，构建 WideSeekBench 基准。',
-                    keypoints: ['WideSeekBench 广域信息检索基准', '动态层次化多 Agent 架构', '多 Agent RL 端到端优化'],
-                    links: { arxiv: 'https://arxiv.org/abs/2602.02636' },
-                    category: 'cs.CL / cs.AI / cs.IR'
-                }
-            ]
-        };
-        
-        // 初始数据（2026-02-04）
-        briefingsData['2026-02-04'] = {
-            date: '2026-02-04',
-            stats: { papers: 5, safety: 2, breakthrough: 1, conference: 1 },
-            trends: [
-                { icon: '🛡️', text: '安全警惕上升：对完全自主 Agent 的伦理风险讨论加剧' },
-                { icon: '🔄', text: '异构 > 同质：多样化 Agent 比堆数量更有效' },
-                { icon: '📋', text: '标准化需求：Agent 系统文档化和透明度框架' },
-                { icon: '⚡', text: '效率优化：Test-time 计算的智能分配' }
-            ],
-            papers: [
-                {
-                    id: '2502.01635',
-                    title: 'The AI Agent Index',
-                    authors: 'MIT 团队 (Stephen Casper 等)',
-                    badges: ['hot', 'new'],
-                    abstract: '首个公开的 AI Agent 数据库，记录当前部署的 Agentic AI 系统的技术组件、应用场景和安全措施。研究发现开发者普遍提供了充足的能力信息，但安全风险和管理实践信息严重不足。',
-                    keypoints: ['首个系统化 Agent 文档框架', '记录基础模型、推理实现、工具使用等技术组件', '安全实践披露存在明显缺口'],
-                    links: { arxiv: 'https://arxiv.org/abs/2502.01635', project: 'https://aiagentindex.mit.edu/' },
-                    category: 'cs.SE / cs.AI'
-                },
-                {
-                    id: '2502.02649',
-                    title: 'Fully Autonomous AI Agents Should Not be Developed',
-                    authors: 'Margaret Mitchell (前 Google AI 伦理专家)',
-                    badges: ['hot', 'new'],
-                    abstract: '明确反对开发完全自主的 AI Agent。论文构建了不同 AI Agent 级别的框架，详细分析每个级别涉及的伦理价值和权衡，指出用户将控制权让渡给 AI Agent 越多，对人的风险越大。',
-                    keypoints: ['系统自主性与风险成正比', '安全风险影响人类生命', '呼吁限制完全自主系统开发'],
-                    links: { arxiv: 'https://arxiv.org/abs/2502.02649' },
-                    category: 'cs.AI'
-                },
-                {
-                    id: '2602.03794',
-                    title: 'Understanding Agent Scaling in Multi-Agent Systems via Diversity',
-                    authors: 'Shangding Gu 等',
-                    badges: ['star', 'new'],
-                    abstract: '提出多 Agent 系统扩展性的信息论框架。发现同质 Agent 扩展收益快速递减，而异构 Agent 持续产生显著增益。2 个多样化 Agent 性能 ≥ 16 个同质 Agent。',
-                    keypoints: ['信息论框架分析 MAS 性能边界', '2 个多样化 Agent 性能 ≥ 16 个同质 Agent', 'K* 指标：无需 ground-truth 量化有效通道'],
-                    links: { arxiv: 'https://arxiv.org/abs/2602.03794', code: 'https://github.com/SafeRL-Lab/Agent-Scaling' },
-                    category: 'cs.AI / cs.LG'
-                },
-                {
-                    id: '2602.03828',
-                    title: 'AutoFigure: Agentic Scientific Illustrations',
-                    authors: 'Yixuan Weng 等',
-                    badges: ['star', 'new'],
-                    abstract: '首个 Agentic 框架，自动从长文本生成高质量科学插图。包含 FigureBench 数据集（3,300 高质量图文对）。在渲染前进行思考、重组、验证。',
-                    keypoints: ['FigureBench: 首个大规模科学插图基准', '多步验证：思考 → 重组 → 验证 → 渲染', 'ICLR 2026 接收'],
-                    links: { arxiv: 'https://arxiv.org/abs/2602.03828', code: 'https://github.com/ResearAI/AutoFigure' },
-                    category: 'cs.AI / cs.CL / cs.CV'
-                },
-                {
-                    id: '2602.03814',
-                    title: 'Conformal Thinking: Risk Control for Reasoning',
-                    authors: 'Xi Wang 等',
-                    badges: ['new'],
-                    abstract: '为推理 LLM 的 test-time scaling 提供风险控制框架。引入上下双阈值机制：上阈值在模型自信时停止，下阈值对无解实例提前停止。',
-                    keypoints: ['上阈值：自信时停止（可能出错）', '下阈值：对无解实例提前停止', '在保证目标错误率的同时最小化计算成本'],
-                    links: { arxiv: 'https://arxiv.org/abs/2602.03814' },
-                    category: 'cs.AI / cs.LG'
-                }
-            ]
-        };
-        
-        // 收藏管理
-        function getFavorites() {
-            return JSON.parse(localStorage.getItem('favoritePapers') || '[]');
-        }
-        
-        function addFavorite(paperId, paperData) {
-            const favorites = getFavorites();
-            if (!favorites.find(f => f.id === paperId)) {
-                favorites.push({ id: paperId, ...paperData, savedAt: new Date().toISOString() });
-                localStorage.setItem('favoritePapers', JSON.stringify(favorites));
-                updateFavCount();
-                showToast('⭐ 已收藏', 'success');
-                return true;
-            }
-            return false;
-        }
-        
-        function removeFavorite(paperId) {
-            let favorites = getFavorites();
-            favorites = favorites.filter(f => f.id !== paperId);
-            localStorage.setItem('favoritePapers', JSON.stringify(favorites));
-            updateFavCount();
-            showToast('💔 已取消收藏', 'normal');
-            renderFavorites();
-            updateFavoriteButtons();
-        }
-        
-        function isFavorite(paperId) {
-            return getFavorites().some(f => f.id === paperId);
-        }
-        
-        function toggleFavorite(paperId) {
-            const paper = getCurrentBriefing().papers.find(p => p.id === paperId);
-            if (isFavorite(paperId)) {
-                removeFavorite(paperId);
-                document.querySelector(`[data-paper-id="${paperId}"]`).classList.remove('active');
-            } else {
-                addFavorite(paperId, paper);
-                document.querySelector(`[data-paper-id="${paperId}"]`).classList.add('active');
-            }
-        }
-        
-        function updateFavCount() {
-            document.getElementById('favCount').textContent = getFavorites().length;
-        }
-        
-        function updateFavoriteButtons() {
-            document.querySelectorAll('.favorite-btn').forEach(btn => {
-                const paperId = btn.dataset.paperId;
-                if (isFavorite(paperId)) {
-                    btn.classList.add('active');
-                    btn.innerHTML = '⭐';
-                } else {
-                    btn.classList.remove('active');
-                    btn.innerHTML = '☆';
-                }
-            });
-        }
-        
-        // 渲染收藏列表
-        function renderFavorites() {
-            const favorites = getFavorites();
-            const container = document.getElementById('favoritesList');
-            
-            if (favorites.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">⭐</div>
-                        <p>还没有收藏的论文</p>
-                        <p style="font-size: 0.9rem; margin-top: 8px;">点击简报中的 ☆ 按钮收藏感兴趣的论文</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = favorites.map(f => `
-                <div class="favorite-item" onclick="loadBriefing('${f.date || '2026-02-04'}')">
-                    <div class="favorite-info">
-                        <h4>${f.title}</h4>
-                        <span>${f.authors} · ${f.category || ''}</span>
-                    </div>
-                    <button class="favorite-remove" onclick="event.stopPropagation(); removeFavorite('${f.id}')">
-                        🗑️
-                    </button>
-                </div>
-            `).join('');
-        }
-        
-        // 标签切换
-        function switchTab(tab) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.briefing-content, .favorites-content').forEach(c => c.classList.remove('active'));
-            
-            if (tab === 'briefing') {
-                document.getElementById('tab-briefing').classList.add('active');
-                document.getElementById('briefingPanel').classList.add('active');
-            } else {
-                document.getElementById('tab-favorites').classList.add('active');
-                document.getElementById('favoritesPanel').classList.add('active');
-                renderFavorites();
-            }
-        }
-        
-        // 日期操作
-        let currentDate = '2026-02-04';
-        
-        function getCurrentBriefing() {
-            return briefingsData[currentDate] || null;
-        }
-        
-        function loadBriefing(date) {
-            currentDate = date;
-            document.getElementById('datePicker').value = date;
-            document.getElementById('currentDateDisplay').textContent = date;
-            
-            const briefing = briefingsData[date];
-            const container = document.getElementById('briefingData');
-            const loading = document.getElementById('loading');
-            
-            if (!briefing) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📅</div>
-                        <p>该日期暂无简报</p>
-                        <p style="font-size: 0.9rem; margin-top: 8px;">简报从 2026-02-04 开始生成</p>
-                    </div>
-                `;
-                loading.style.display = 'none';
-                document.getElementById('paperCount').textContent = 0;
-                return;
-            }
-            
-            // 显示内容
-            container.innerHTML = `
-                <!-- 统计 -->
-                <div class="stats">
-                    <div class="stat-card">
-                        <div class="stat-number">${briefing.stats.papers}</div>
-                        <div class="stat-label">重点论文</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${briefing.stats.safety}</div>
-                        <div class="stat-label">安全议题</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${briefing.stats.breakthrough}</div>
-                        <div class="stat-label">技术突破</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${briefing.stats.conference}</div>
-                        <div class="stat-label">顶会接收</div>
-                    </div>
-                </div>
-                
-                <!-- 趋势 -->
-                <div class="trends">
-                    ${briefing.trends.map(t => `
-                        <div class="trend-item">
-                            <span class="trend-icon">${t.icon}</span>
-                            <span class="trend-text">${t.text}</span>
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <!-- 论文 -->
-                ${briefing.papers.map(paper => `
-                    <article class="paper" id="paper-${paper.id}">
-                        <div class="paper-header">
-                            <div class="paper-badges">
-                                ${paper.badges.includes('hot') ? '<span class="badge badge-hot">高热度</span>' : ''}
-                                ${paper.badges.includes('star') ? '<span class="badge badge-star">技术突破</span>' : ''}
-                                ${paper.badges.includes('new') ? '<span class="badge badge-new">新发布</span>' : ''}
-                            </div>
-                            <button class="favorite-btn ${isFavorite(paper.id) ? 'active' : ''}" 
-                                    data-paper-id="${paper.id}"
-                                    onclick="toggleFavorite('${paper.id}')">
-                                ${isFavorite(paper.id) ? '⭐' : '☆'}
-                            </button>
-                        </div>
-                        <h3>${paper.title}</h3>
-                        <div class="paper-meta">
-                            👥 ${paper.authors} · 📄 ${paper.id} · 🏷️ ${paper.category}
-                        </div>
-                        <p class="paper-abstract">${paper.abstract}</p>
-                        <div class="paper-keypoints">
-                            <h4>核心发现</h4>
-                            <ul>
-                                ${paper.keypoints.map(k => `<li>${k}</li>`).join('')}
-                            </ul>
-                        </div>
-                        <div class="paper-links">
-                            <a href="${paper.links.arxiv}" class="paper-link link-primary" target="_blank">📄 查看论文</a>
-                            ${paper.links.project ? `<a href="${paper.links.project}" class="paper-link link-secondary" target="_blank">🌐 项目网站</a>` : ''}
-                            ${paper.links.code ? `<a href="${paper.links.code}" class="paper-link link-secondary" target="_blank">💻 代码仓库</a>` : ''}
-                        </div>
-                    </article>
-                `).join('')}
-            `;
-            
-            loading.style.display = 'none';
-            document.getElementById('paperCount').textContent = briefing.papers.length;
-            updateFavoriteButtons();
-        }
-        
-        function changeDate(days) {
-            const date = new Date(currentDate);
-            date.setDate(date.getDate() + days);
-            const newDate = date.toISOString().split('T')[0];
-            loadBriefing(newDate);
-        }
-        
-        // 通知
-        function showToast(message, type = 'normal') {
-            const toast = document.getElementById('toast');
-            toast.querySelector('.toast-icon').textContent = type === 'success' ? '✅' : '💡';
-            toast.querySelector('.toast-message').textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2000);
-        }
-        
-        // 初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            loadBriefing('2026-02-05');
-            updateFavCount();
-        });
-        
-        console.log('%c AI Research Briefing ', 'background: linear-gradient(135deg, #6366f1, #ec4899); color: white; font-size: 20px; padding: 10px 20px; border-radius: 10px;');
-        console.log('📅 Date selector enabled');
-        console.log('⭐ Favorite system enabled');
-    </script>
 </body>
 </html>
