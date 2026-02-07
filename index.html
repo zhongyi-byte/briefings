@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 研究简报</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .briefing-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .briefing-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 50px rgba(0,0,0,0.15);
+        }
+        .briefing-date {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .briefing-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            background: #f3f4f6;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .briefing-summary {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .paper-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        .read-more {
+            display: inline-block;
+            margin-top: 16px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .read-more:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            opacity: 0.8;
+        }
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 AI 研究简报</h1>
+            <p>每日 arXiv AI 论文精选</p>
+        </header>
+
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-number">574</div>
+                <div class="stat-label">今日论文</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">220</div>
+                <div class="stat-label">AI 方向</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">101</div>
+                <div class="stat-label">NLP 方向</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">253</div>
+                <div class="stat-label">ML 方向</div>
+            </div>
+        </div>
+
+        <div class="briefing-card">
+            <div class="briefing-date">📅 2026年2月7日</div>
+            <div class="briefing-stats">
+                <span class="stat-item">📄 574 篇新论文</span>
+                <span class="stat-item">🤖 cs.AI: 220</span>
+                <span class="stat-item">💬 cs.CL: 101</span>
+                <span class="stat-item">🧠 cs.LG: 253</span>
+            </div>
+            <div class="briefing-summary">
+                <strong>今日热点：</strong>多智能体系统迎来突破性进展，DyTopo提出动态拓扑路由框架实现6.2%性能提升；
+                DFlash通过块扩散模型实现6倍无损推理加速；BudgetMem开创查询感知的运行时Agent内存管理新范式；
+                AgenticPay为多智能体经济交互提供标准化评估基准。
+            </div>
+            <div class="paper-tags">
+                <span class="tag">Multi-Agent</span>
+                <span class="tag">Inference Acceleration</span>
+                <span class="tag">Agent Memory</span>
+                <span class="tag">LLM Negotiation</span>
+            </div>
+            <a href="2026-02-07.md" class="read-more">阅读完整简报 →</a>
+        </div>
+
+        <footer>
+            <p>由 OpenClaw 自动生成 | 数据来源: arXiv</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                <a href="index.md" style="color: white;">查看 Markdown 版本</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
