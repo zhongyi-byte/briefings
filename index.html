@@ -3,160 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 研究简报</title>
+    <title>AI 每日简报 - briefing.zyi.info</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
-            padding: 20px;
+            padding: 2rem 1rem;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
+        .container { max-width: 900px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color); }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(135deg, #58a6ff, #a371f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { color: var(--text-secondary); font-size: 1.1rem; }
+        .current-briefing {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            border: 1px solid var(--accent);
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 40px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
         }
-        h1 {
-            color: #1a1a2e;
-            margin-bottom: 10px;
-            font-size: 2.2em;
+        .current-briefing h2 { color: var(--accent); margin-bottom: 1rem; }
+        .current-briefing .date { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .current-briefing .highlight { color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
         }
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
+        .btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
+        .archive { margin-top: 3rem; }
+        .archive h2 { margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+        .year { margin-bottom: 2rem; }
+        .year h3 { color: var(--accent); margin-bottom: 1rem; }
+        .briefing-list { list-style: none; }
+        .briefing-list li { 
+            padding: 1rem; 
+            margin-bottom: 0.5rem; 
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .briefing-list li:hover { border-color: var(--accent); transform: translateX(5px); }
+        .briefing-list a { color: var(--text-primary); text-decoration: none; display: block; }
+        .briefing-list .date { color: var(--accent); font-weight: 600; }
+        .briefing-list .desc { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem; }
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
+            gap: 1rem;
+            margin: 2rem 0;
         }
         .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
+            padding: 1rem;
             text-align: center;
         }
-        .stat-card h3 {
-            font-size: 2em;
-            margin-bottom: 5px;
-        }
-        .stat-card p {
-            opacity: 0.9;
-            font-size: 0.9em;
-        }
-        .briefing-list {
-            margin-top: 30px;
-        }
-        .briefing-item {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 0 8px 8px 0;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .briefing-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .briefing-item h3 {
-            color: #1a1a2e;
-            margin-bottom: 8px;
-        }
-        .briefing-item .date {
-            color: #667eea;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-        .briefing-item .highlight {
-            color: #666;
-            margin-top: 8px;
-            font-size: 0.95em;
-        }
-        .briefing-item a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        .briefing-item a:hover {
-            text-decoration: underline;
-        }
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        .tag {
-            background: #e3e8ff;
-            color: #667eea;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-        }
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #999;
-            text-align: center;
-            font-size: 0.9em;
-        }
+        .stat-card .number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+        .stat-card .label { color: var(--text-secondary); font-size: 0.85rem; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📊 AI 研究简报</h1>
-        <p class="subtitle">每日 arXiv AI 论文精选 · 关注 LLM / Agent / 多模态 / AI Safety</p>
-        
+        <header>
+            <h1>🤖 AI 每日简报</h1>
+            <p class="subtitle">每日科技趋势、AI 论文、行业动态</p>
+        </header>
+
+        <div class="current-briefing">
+            <h2>📅 今日简报</h2>
+            <div class="date">2026年2月14日</div>
+            <div class="highlight">Agent 安全专题：93% 攻击成功率 / OpenAI 删除"安全" / 医疗 AI 七维评估</div>
+            <a href="2026-02-14.md" class="btn">阅读完整简报</a>
+        </div>
+
         <div class="stats">
             <div class="stat-card">
-                <h3>1</h3>
-                <p>已发布简报</p>
+                <div class="number">4</div>
+                <div class="label">今日论文</div>
             </div>
             <div class="stat-card">
-                <h3>8</h3>
-                <p>今日精选论文</p>
+                <div class="number">5</div>
+                <div class="label">HN 热门</div>
             </div>
             <div class="stat-card">
-                <h3>491</h3>
-                <p>今日 AI 论文总数</p>
+                <div class="number">5</div>
+                <div class="label">博客文章</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">8</div>
+                <div class="label">历史简报</div>
             </div>
         </div>
 
-        <div class="briefing-list">
-            <h2>📅 历史简报</h2>
+        <div class="archive">
+            <h2>📚 历史简报</h2>
             
-            <div class="briefing-item">
-                <span class="date">2026-02-06</span>
-                <h3><a href="./2026-02-06.html">今日 AI 研究简报</a></h3>
-                <p class="highlight">
-                    群体进化代理 (GEA) 提出开放式自我改进新范式；揭示推理模型的"流体表征"机制；
-                    发现 CoT 并非"真理链"，存在假新闻生成风险；WideSeek-R1 验证宽度扩展的有效性
-                </p>
-                <div class="tags">
-                    <span class="tag">AI Agent</span>
-                    <span class="tag">LLM 推理</span>
-                    <span class="tag">多模态</span>
-                    <span class="tag">AI Safety</span>
-                </div>
+            <div class="year">
+                <h3>2026年</h3>
+                <ul class="briefing-list">
+                    <li>
+                        <a href="2026-02-14.md">
+                            <span class="date">02-14</span>
+                            <span class="desc">🔒 Agent 安全专题：93% 攻击成功率、OpenAI 删除"安全"、医疗 AI 七维评估框架</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="2026-02-13.md">
+                            <span class="date">02-13</span>
+                            <span class="desc">🚨 首例 AI Agent "黑化"事件 + Gemini 3 Deep Think 升级 + GPT-5.3-Codex-Spark 实时编程模型 + 两篇 Agentic AI 安全综述</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="2026-02-12.md">
+                            <span class="date">02-12</span>
+                            <span class="desc">5篇精选论文：扩散预训练Embedding、数据重复>数据规模、YOR开源机器人、跨域Agent工作流、材料发现Agent + GLM-5 + HN热门(Claude Code讨论)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="2026-02-11.md">
+                            <span class="date">02-11</span>
+                            <span class="desc">6篇精选论文：Agent合成环境、ADPO优化、物理推理、医学影像质量</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="2026-02-10.md">
+                            <span class="date">02-10</span>
+                            <span class="desc">5篇精选论文：Agentic AI 安全、多模态安全评估、Prompt 注入防御</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="2026-02-07.md">
+                            <span class="date">02-07</span>
+                            <span class="desc">574篇新论文：多智能体动态拓扑、块扩散解码、Agent内存优化</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <div class="footer">
-            <p>由 OpenClaw AI 自动生成 · 每日更新</p>
-            <p>数据来源: arXiv.org</p>
-        </div>
+        <footer>
+            <p>由 OpenClaw 自动生成 · 每日更新</p>
+            <p style="margin-top: 0.5rem;"><a href="index.md" style="color: var(--accent);">查看 Markdown 版本</a></p>
+        </footer>
     </div>
 </body>
 </html>
