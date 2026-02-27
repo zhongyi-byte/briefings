@@ -1,0 +1,396 @@
+<!-- AI每日简报 - 新模板 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI每日简报 - {{DATE}}</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #1a1a1a;
+            --text-secondary: #666;
+            --accent: #0066cc;
+            --accent-light: #e6f2ff;
+            --border: #e5e5e5;
+            --card-bg: #fff;
+            --highlight: #fff8e6;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .briefing-header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .briefing-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .briefing-title {
+            font-family: Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+        
+        .briefing-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Core Insight */
+        .core-insight {
+            background: var(--highlight);
+            border-left: 4px solid #f0a500;
+            padding: 24px;
+            margin-bottom: 48px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .core-insight-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #c77700;
+            margin-bottom: 8px;
+        }
+        
+        .core-insight-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* Section Headers */
+        .section {
+            margin-bottom: 48px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--text);
+        }
+        
+        .section-icon {
+            font-size: 1.25rem;
+        }
+        
+        .section-title {
+            font-family: Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .section-count {
+            margin-left: auto;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+        
+        /* Item Cards */
+        .item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .item-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .item-rank {
+            min-width: 28px;
+            height: 28px;
+            background: var(--text);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .item-title {
+            flex: 1;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .item-source {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        /* Importance Block */
+        .importance {
+            background: var(--accent-light);
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+        
+        .importance-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+        
+        .importance-text {
+            color: var(--text);
+        }
+        
+        /* Summary Block */
+        .summary {
+            margin-bottom: 16px;
+        }
+        
+        .summary-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+        
+        .summary-text {
+            color: var(--text-secondary);
+        }
+        
+        /* Details */
+        .details {
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+        
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: var(--bg);
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+        
+        /* Links */
+        .item-links {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .item-link {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .item-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Stats Table */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            font-size: 0.9rem;
+        }
+        
+        .stats-table th,
+        .stats-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .stats-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .briefing-footer {
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .briefing-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container { padding: 24px 16px; }
+            .briefing-title { font-size: 1.5rem; }
+            .item { padding: 20px; }
+            .item-header { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Briefing Header -->
+        <header class="briefing-header">
+            <div class="briefing-date">{{DATE_FORMATTED}}</div>
+            <h1 class="briefing-title">{{TITLE}}</h1>
+            <div class="briefing-meta">
+                📊 {{TOTAL_ITEMS}}条内容 · ⏱️ 预计阅读3-5分钟
+            </div>
+        </header>
+        
+        <!-- Core Insight -->
+        <div class="core-insight">
+            <div class="core-insight-label">💡 今日核心洞察</div>
+            <div class="core-insight-text">{{CORE_INSIGHT}}</div>
+        </div>
+        
+        <!-- Must Read Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🔥</span>
+                <span class="section-title">必读内容</span>
+                <span class="section-count">{{MUST_READ_COUNT}}条</span>
+            </div>
+            {{MUST_READ_ITEMS}}
+        </section>
+        
+        <!-- Deep Dive Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📄</span>
+                <span class="section-title">深度论文</span>
+                <span class="section-count">{{PAPER_COUNT}}篇</span>
+            </div>
+            {{PAPER_ITEMS}}
+        </section>
+        
+        <!-- Quick News Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📰</span>
+                <span class="section-title">快讯一览</span>
+                <span class="section-count">{{NEWS_COUNT}}条</span>
+            </div>
+            {{NEWS_ITEMS}}
+        </section>
+        
+        <!-- Stats Summary -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <span class="section-title">数据概览</span>
+            </div>
+            <table class="stats-table">
+                <tr>
+                    <th>来源</th>
+                    <th>数量</th>
+                    <th>AI相关内容</th>
+                </tr>
+                <tr>
+                    <td>Hacker News</td>
+                    <td>{{HN_COUNT}}条</td>
+                    <td>{{HN_AI_COUNT}}条核心</td>
+                </tr>
+                <tr>
+                    <td>arXiv</td>
+                    <td>{{ARXIV_COUNT}}篇</td>
+                    <td>覆盖{{ARXIV_INSTITUTIONS}}家机构</td>
+                </tr>
+                <tr>
+                    <td>技术博客</td>
+                    <td>{{RSS_COUNT}}篇</td>
+                    <td>全部AI/技术相关</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="briefing-footer">
+            <p>由 OpenClaw 自动生成 · <a href="../index.html">返回首页</a></p>
+            <p style="margin-top: 8px;">发现问题？<a href="https://t.me/zyi_ai_briefing">Telegram反馈</a></p>
+        </footer>
+    </div>
+</body>
+</html>
+
+<!-- 
+Item Template:
+<div class="item">
+    <div class="item-header">
+        <span class="item-rank">1</span>
+        <div>
+            <div class="item-title">{{TITLE}}</div>
+            <div class="item-source">{{SOURCE}}</div>
+        </div>
+    </div>
+    <div class="importance">
+        <div class="importance-label">为什么重要</div>
+        <div class="importance-text">{{WHY_IMPORTANT}}</div>
+    </div>
+    <div class="summary">
+        <div class="summary-label">一句话总结</div>
+        <div class="summary-text">{{ONE_LINE_SUMMARY}}</div>
+    </div>
+    <div class="details">{{DETAILS}}</div>
+    <div class="tags">
+        <span class="tag">{{TAG1}}</span>
+        <span class="tag">{{TAG2}}</span>
+    </div>
+    <div class="item-links">
+        <a href="{{URL}}" class="item-link">阅读原文 →</a>
+        {{CODE_LINK}}
+    </div>
+</div>
+-->
